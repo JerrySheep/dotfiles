@@ -14,6 +14,7 @@ Plug 'tpope/vim-sensible'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'scrooloose/nerdtree'
+Plug 'vim-utils/vim-husk' | Plug 'tpope/vim-rsi' " Eamcs-Style keymapping
 nmap <C-\> :NERDTreeToggle<CR>
 " Quit when nerdtree is the only buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -21,8 +22,8 @@ Plug 'mhinz/vim-startify'
 " Shot nerdtree when start vim without argument
 autocmd VimEnter *
             \ if !argc()
-            \ |   Startify
-            \ |   NERDTree
+        "    \ |   Startify
+       "     \ |   NERDTree
             \ |   wincmd w
             \ | endif
 Plug 'scrooloose/nerdcommenter' | Plug 'tpope/vim-commentary'
@@ -45,6 +46,25 @@ command! PU PlugUpgrade | PlugUpdate
 
 call plug#end()
 
+" Emacs style key mapping
+ inoremap <C-a> <Home>
+ inoremap <C-e> <End>
+ inoremap <leader>a <End>
+ inoremap <leader>e <End>
+ inoremap <C-h> <BS>
+ inoremap <C-d> <Del>
+ inoremap <C-f> <Right>
+ inoremap <C-b> <Left>
+ " In insert mode, pressing Ctrl-O switches to normal mode for one command, then switches back to insert mode when the command is finished.
+ inoremap <C-k> <C-o>D
+ inoremap <C-u> <Esc>v0c
+   " Quickly move in normal mode
+ noremap <c-j> <c-y>
+ noremap <c-k> <c-e>
+ noremap <c-e> A
+ noremap <c-a> I
+   " Paste multiple times
+ xnoremap p pgvy
 
 colorscheme gruvbox
 set background=dark
